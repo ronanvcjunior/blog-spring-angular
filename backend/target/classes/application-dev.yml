@@ -1,0 +1,20 @@
+server:
+  error:
+    include-stacktrace: ON_PARAM
+
+spring:
+  application:
+    name: blog_spring_angular
+  datasource:
+    url: jdbc:mysql://localhost:3307/blog_spring_angular?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password: senha123
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

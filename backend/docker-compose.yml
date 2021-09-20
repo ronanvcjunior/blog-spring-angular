@@ -1,0 +1,20 @@
+version: "3.1"
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/blog_spring_angular?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_PASSWORD: senha123
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASWORD: root
+      MYSQL_TCP_PORT: 3307
+      MYSQL_ROOT_PASSWORD: senha123
+    ports:
+      - "3307:3307"
+    volumes:
+      - springBoot_data:/var/lib/mysql
+
+volumes:
+  springBoot_data:

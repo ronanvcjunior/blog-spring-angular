@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BlogspringangularApplication<blogspringangular>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ronan.blogspringangular.BlogspringangularApplication",
+            "projectName": "blogspringangular",
+            "args": ""
+        }
+    ]
+}

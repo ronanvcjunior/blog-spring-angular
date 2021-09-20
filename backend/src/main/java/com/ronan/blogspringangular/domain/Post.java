@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,18 +34,19 @@ public class Post implements Serializable {
     private Instant updateOn;
 
     @NotBlank
-    private String username;
+    @Column(name = "user_name")
+    private String userName;
 
     public Post() {
     }
 
-    public Post(Long id, String title, String content, Instant createdOn, Instant updateOn, String username) {
+    public Post(Long id, String title, String content, Instant createdOn, Instant updateOn, String userName) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdOn = createdOn;
         this.updateOn = updateOn;
-        this.username = username;
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -87,12 +89,12 @@ public class Post implements Serializable {
         this.updateOn = updateOn;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getUserName() {
+        return this.userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Post id(Long id) {
@@ -120,8 +122,8 @@ public class Post implements Serializable {
         return this;
     }
 
-    public Post username(String username) {
-        setUsername(username);
+    public Post userName(String userName) {
+        setUserName(userName);
         return this;
     }
 }

@@ -1,6 +1,7 @@
 package com.ronan.blogspringangular.controller;
 
 import com.ronan.blogspringangular.domain.User;
+import com.ronan.blogspringangular.dto.LoginRequest;
 import com.ronan.blogspringangular.dto.RegisterRequest;
 import com.ronan.blogspringangular.service.AuthService;
 
@@ -19,9 +20,14 @@ public class AuthController {
     @Autowired
     private AuthService service;
     
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public ResponseEntity<User> signup(@RequestBody RegisterRequest registerRequest) {
         User user = service.signup(registerRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginRequest) {
+        return service.login(loginRequest);
     }
 }

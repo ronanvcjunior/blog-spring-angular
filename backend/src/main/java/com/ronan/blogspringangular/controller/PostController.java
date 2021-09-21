@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +30,14 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Post>> getAllPosts() {
-        List<Post> posts = service.getAllPosts();
+    public ResponseEntity<List<PostDto>> getAllPosts() {
+        List<PostDto> posts = service.getAllPosts();
         return ResponseEntity.ok().body(posts);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable @RequestBody Long id) {
+        PostDto postDto = service.getPostById(id);
+        return ResponseEntity.ok().body(postDto);
     }
 }

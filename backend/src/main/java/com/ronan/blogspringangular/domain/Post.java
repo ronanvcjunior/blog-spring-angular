@@ -31,7 +31,6 @@ public class Post implements Serializable {
     private String content;
 
     private Instant createdOn;
-    private Instant updateOn;
 
     @NotBlank
     @Column(name = "user_name")
@@ -40,12 +39,11 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(Long id, String title, String content, Instant createdOn, Instant updateOn, String userName) {
+    public Post(Long id, String title, String content, Instant createdOn, String userName) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdOn = createdOn;
-        this.updateOn = updateOn;
         this.userName = userName;
     }
 
@@ -81,14 +79,6 @@ public class Post implements Serializable {
         this.createdOn = createdOn;
     }
 
-    public Instant getUpdateOn() {
-        return this.updateOn;
-    }
-
-    public void setUpdateOn(Instant updateOn) {
-        this.updateOn = updateOn;
-    }
-
     public String getUserName() {
         return this.userName;
     }
@@ -114,11 +104,6 @@ public class Post implements Serializable {
 
     public Post createdOn(Instant createdOn) {
         setCreatedOn(createdOn);
-        return this;
-    }
-
-    public Post updateOn(Instant updateOn) {
-        setUpdateOn(updateOn);
         return this;
     }
 

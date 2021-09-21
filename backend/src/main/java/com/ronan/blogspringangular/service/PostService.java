@@ -1,6 +1,7 @@
 package com.ronan.blogspringangular.service;
 
 import java.time.Instant;
+import java.util.List;
 
 import com.ronan.blogspringangular.domain.Post;
 import com.ronan.blogspringangular.dto.PostDto;
@@ -36,5 +37,9 @@ public class PostService {
 
         post.userName(user.getUsername());
         post.createdOn(Instant.now());
+    }
+
+    public List<Post> getAllPosts() {
+        return repository.findAll();
     }
 }

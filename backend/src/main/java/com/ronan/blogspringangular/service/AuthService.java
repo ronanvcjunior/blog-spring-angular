@@ -1,5 +1,7 @@
 package com.ronan.blogspringangular.service;
 
+import java.util.Optional;
+
 import com.ronan.blogspringangular.domain.User;
 import com.ronan.blogspringangular.dto.LoginRequest;
 import com.ronan.blogspringangular.dto.RegisterRequest;
@@ -49,10 +51,16 @@ public class AuthService {
     public String login(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
-        
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return jwtProvider.generateToken(authentication);
+    }
+
+    public Optional<org.springframework.security.core.userdetails.User> geCurrentUser() {
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        return Optional.of(principal);
     }
 
 }

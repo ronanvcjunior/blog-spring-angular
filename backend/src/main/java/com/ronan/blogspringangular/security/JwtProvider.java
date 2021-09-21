@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -28,5 +29,25 @@ public class JwtProvider {
                 .setSubject(principal.getUsername())
                 .signWith(key)
                 .compact();
+    }
+
+    public boolean validateToken(String jwt) {
+        Jwts.parser().setSigningKey(key).parseClaimsJws(jwt);
+        
+        // var parser = Jwts.parserBuilder().setSigningKey(key).build();
+        // parser.parseClaimsJws(jwt);
+
+        return true;
+    }
+
+    public String getUserNameFromJWT(String token) {
+        Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+
+        return claims.getSubject();
+
+        // var parser = Jwts.parserBuilder().setSigningKey(key).build();
+        // var claims = parser.parseClaimsJws(token);
+
+        // return claims.getBody().getSubject();
     }
 }
